@@ -1,7 +1,9 @@
 # api/routes.py
 from fastapi import APIRouter, HTTPException, BackgroundTasks, Depends, UploadFile, File
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List, Optional
+import os
 import uuid
 from datetime import datetime
 

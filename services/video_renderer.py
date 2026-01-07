@@ -4,12 +4,13 @@ import os
 from pathlib import Path
 from datetime import datetime
 from config import settings
-try:
-    # MoviePy 2.x+ uses this import path
-    from moviepy import ColorClip, TextClip, AudioFileClip, CompositeVideoClip, concatenate_videoclips
-except ImportError:
-    # Fallback for older MoviePy 1.x
-    from moviepy.editor import ColorClip, TextClip, AudioFileClip, CompositeVideoClip, concatenate_videoclips
+
+# Configure ImageMagick if path is provided - MUST BE DONE BEFORE MOVIEPY IMPORT
+if settings.imagemagick_path and os.path.exists(settings.imagemagick_path):
+    os.environ["IMAGEMAGICK_BINARY"] = settings.imagemagick_path
+
+# MoviePy 2.x+ uses this import path
+from moviepy import ColorClip, TextClip, AudioFileClip, CompositeVideoClip, concatenate_videoclips
 
 logger = logging.getLogger(__name__)
 
@@ -45,14 +46,14 @@ class VideoRenderer:
                 text = scene.get('narration_text', '')
                 
                 # Create background
-                bg_clip = ColorClip(size=(width, height), color=bg_color).set_duration(duration)
+                bg_clip = ColorClip(size=(width, height), color=bg_color).with_duration(duration)
                 
                 # Create text
                 # Note: moviepy requires ImageMagick for TextClip, falling back to basic if not present might be needed
                 # For this prototype we assume a simple TextClip works or we handle error
                 try:
-                    txt_clip = TextClip(text, fontsize=font_size, color=text_color, size=(width-100, None), method='caption')
-                    txt_clip = txt_clip.set_position('center').set_duration(duration)
+                    txt_clip = TextClip(text=text, font=r"C:\Windows\Fonts\arial.ttf", font_size=font_size, color=text_color, size=(width-100, None), method='caption')
+                    txt_clip = txt_clip.with_position('center').with_duration(duration)
                     
                     video = CompositeVideoClip([bg_clip, txt_clip])
                 except Exception as e:
@@ -64,7 +65,7 @@ class VideoRenderer:
             
             if not clips:
                 # specific fallback if no scenes
-                clips.append(ColorClip(size=(width, height), color=bg_color).set_duration(5))
+                clips.append(ColorClip(size=(width, height), color=bg_color).with_duration(5))
                 
             final_video = concatenate_videoclips(clips)
             
@@ -75,7 +76,7 @@ class VideoRenderer:
                     # Loop or cut audio to match video? Or extend video?
                     # Usually audio drives video, but here we used scene duration
                     # Let's trim audio to video length or vice versa
-                    final_video = final_video.set_audio(audio)
+                    final_video = final_video.with_audio(audio)
                 except Exception as e:
                     logger.error(f"Failed to attach audio: {e}")
             

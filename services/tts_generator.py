@@ -151,7 +151,6 @@ class TTSGenerator:
             return self._generate_sarvam(text, language)
     
     def _generate_sarvam(self, text: str, language: str) -> str:
-        """Sarvam AI - Indian languages specialist, FREE tier"""
         try:
             logger.info("Generating audio with Sarvam AI")
             
@@ -234,7 +233,6 @@ class TTSGenerator:
             return self._generate_gtts(text, language)
     
     def _generate_gtts(self, text: str, language: str) -> str:
-        """Google TTS - Simple, FREE, always works"""
         try:
             logger.info("Generating audio with gTTS (Google TTS)")
             
@@ -261,7 +259,6 @@ class TTSGenerator:
             return self._generate_edge_tts(text, language)
     
     def _generate_edge_tts(self, text: str, language: str) -> str:
-        """Edge TTS - Microsoft, FREE, good quality"""
         try:
             logger.info("Generating audio with Edge TTS")
             
@@ -295,7 +292,7 @@ class TTSGenerator:
             return self._create_placeholder()
     
     def _create_placeholder(self) -> str:
-        """Create placeholder audio file"""
+      
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         placeholder = self.temp_dir / f"placeholder_{timestamp}.mp3"
         placeholder.touch()
@@ -304,7 +301,7 @@ class TTSGenerator:
         return str(placeholder)
     
     def detect_language(self, text: str) -> str:
-        """Simple language detection"""
+        
         if any('\u0900' <= char <= '\u097F' for char in text):
             return "hi"
         elif any('\u0B80' <= char <= '\u0BFF' for char in text):

@@ -1,7 +1,5 @@
 # services/hybrid_video_renderer.py
-"""
-Hybrid video renderer combining Lottie animations with MoviePy text overlays
-"""
+
 import logging
 from pathlib import Path
 import subprocess
@@ -19,20 +17,7 @@ class HybridVideoRenderer:
         self.temp_dir.mkdir(parents=True, exist_ok=True)
     
     def render(self, blueprint: dict, script_data: dict, audio_path: str = None) -> str:
-        """
-        Render video using hybrid approach:
-        1. Lottie intro (3 sec)
-        2. MoviePy content slides (dynamic)
-        3. Lottie outro (3 sec)
-        
-        Args:
-            blueprint: Animation blueprint data
-            script_data: Script with scenes
-            audio_path: Optional audio file
-        
-        Returns:
-            Path to final rendered video
-        """
+
         try:
             logger.info("Starting hybrid video rendering")
             
@@ -88,7 +73,7 @@ class HybridVideoRenderer:
             return self.moviepy.render(blueprint, script_data, audio_path)
     
     def _concatenate_videos(self, video_paths: list, output_path: str):
-        """Concatenate multiple videos using FFmpeg"""
+       
         # Create concat file
         concat_file = self.temp_dir / "concat_list.txt"
         with open(concat_file, 'w') as f:

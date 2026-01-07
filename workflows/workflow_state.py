@@ -1,11 +1,8 @@
 # workflows/workflow_state.py
-"""
-State schema for LangGraph video workflow
-"""
+
 from typing import TypedDict, Optional, List, Dict, Any
 
 class WorkflowState(TypedDict):
-    """State passed between workflow nodes"""
     # Input
     job_id: str
     topic: str

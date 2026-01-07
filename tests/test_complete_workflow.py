@@ -1,7 +1,4 @@
-﻿"""
-End-to-end test for the complete workflow
-Tests Part A and Part B integration
-"""
+﻿
 import asyncio
 import logging
 from services.script_generator import ScriptGenerator
@@ -19,8 +16,8 @@ async def test_workflow():
     print("="*60 + "\n")
     
     # Configuration
-    topic = "How Quantum Computing Works"
-    style = "2D explainer"
+    topic = "How Web Sockets work"
+    style = "flowchart + arrow animations"
     duration = 60
     
     print(f"âœ“ Configuration:")

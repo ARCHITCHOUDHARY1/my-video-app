@@ -2,6 +2,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from config import settings
+from models import Base, VideoJob, StyleProfile
 
 engine = create_engine(
     settings.database_url,
@@ -16,5 +17,3 @@ def get_db():
         yield db
     finally:
         db.close()
-
-from models import Base, VideoJob, StyleProfile

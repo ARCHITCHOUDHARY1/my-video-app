@@ -1,8 +1,5 @@
 # test_tts.py
-"""
-Test script to verify TTS providers are working correctly.
-Tests: Sarvam AI, Hugging Face Piper, Coqui, and other providers.
-"""
+
 
 import os
 import sys
@@ -15,7 +12,6 @@ from services.tts_generator import TTSGenerator
 from config import settings
 
 def test_provider(provider_name: str, text: str, language: str = "en"):
-    """Test a specific TTS provider"""
     print(f"\n{'='*60}")
     print(f"Testing {provider_name.upper()}")
     print(f"{'='*60}")

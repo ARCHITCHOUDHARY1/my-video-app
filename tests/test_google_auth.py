@@ -44,7 +44,7 @@ def test_config():
         import traceback
         traceback.print_exc()
     
-    print("--- TEST COMPLETE ---", flush=True)
+    print(" TEST COMPLETE -", flush=True)
 
 if __name__ == "__main__":
     test_config()

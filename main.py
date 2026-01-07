@@ -106,6 +106,9 @@ async def general_exception_handler(request, exc):
     )
 
 if __name__ == "__main__":
+    import multiprocessing
+    multiprocessing.freeze_support()
+    
     uvicorn.run(
         "main:app",
         host=settings.api_host,

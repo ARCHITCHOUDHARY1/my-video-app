@@ -1,7 +1,5 @@
 # workflows/workflow_nodes.py
-"""
-LangGraph workflow nodes
-"""
+
 import logging
 from typing import Dict, Any
 from services.script_generator import ScriptGenerator
@@ -14,7 +12,6 @@ from utils.report_generator import ReportGenerator
 logger = logging.getLogger(__name__)
 
 def script_node(state: Dict[str, Any]) -> Dict[str, Any]:
-    """Generate script from topic and style"""
     logger.info(f"Script node: Generating script for {state['topic']}")
     
     generator = ScriptGenerator(state['llm_provider'])
@@ -32,7 +29,6 @@ def script_node(state: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def blueprint_node(state: Dict[str, Any]) -> Dict[str, Any]:
-    """Generate animation blueprint from script"""
     logger.info("Blueprint node: Creating animation blueprint")
     
     generator = AnimationBlueprint(state['llm_provider'])
@@ -49,7 +45,6 @@ def blueprint_node(state: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def tts_node(state: Dict[str, Any]) -> Dict[str, Any]:
-    """Generate audio voiceover"""
     logger.info("TTS node: Generating voiceover")
     
     audio_path = None
@@ -72,7 +67,6 @@ def tts_node(state: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def render_node(state: Dict[str, Any]) -> Dict[str, Any]:
-    """Render video from blueprint using hybrid Lottie + MoviePy approach"""
     logger.info("Render node: Creating video with hybrid renderer")
     
     from services.hybrid_video_renderer import HybridVideoRenderer
@@ -92,7 +86,6 @@ def render_node(state: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def report_node(state: Dict[str, Any]) -> Dict[str, Any]:
-    """Generate report"""
     logger.info("Report node: Creating report")
     
     reporter = ReportGenerator()

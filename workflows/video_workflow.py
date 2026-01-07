@@ -1,8 +1,5 @@
 # workflows/video_workflow.py
-"""
-LangGraph-based video generation workflow
-Replaces manual orchestration with declarative graph
-"""
+
 import logging
 from datetime import datetime
 from sqlalchemy.orm import Session
@@ -48,7 +45,7 @@ class VideoWorkflow:
         logger.info("LangGraph workflow compiled successfully")
     
     async def generate_script_async(self, topic: str, style: str, duration: int) -> dict:
-        """Backward compatibility method"""
+    
         try:
             from services.script_generator import ScriptGenerator
             gen = ScriptGenerator(self.llm_provider)

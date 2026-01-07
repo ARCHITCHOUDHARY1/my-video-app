@@ -58,8 +58,8 @@ class Settings(BaseSettings):
     # API Keys
     mistral_api_key: str = ""
     sarvam_api_key: str = ""  # Optional for Indian language TTS
-    video_api_key: str = ""
-    video_api_url: str = ""
+    pexels_api_key: str = ""  # Free Stock Video API
+
     
     # Ollama Configuration (ONLY for Phi-3 local fallback)
     ollama_base_url: str = "http://localhost:11434"
@@ -81,7 +81,7 @@ class Settings(BaseSettings):
     
     # API Settings
     api_host: str = "0.0.0.0"
-    api_port: int = 8000
+    api_port: int = 8001
     debug: bool = False
     
     # Logging
@@ -94,7 +94,8 @@ class Settings(BaseSettings):
     
     # Video Processing
     manim_quality: str = "medium_quality"
-    ffmpeg_path: str = "/usr/bin/ffmpeg"
+    ffmpeg_path: str = r"D:\ffmg\ffmpeg-master-latest-win64-gpl\ffmpeg-master-latest-win64-gpl\bin\ffmpeg.exe"
+    imagemagick_path: str = r"C:\Users\hp\Downloads\ImageMagick-7.1.2-12-portable-Q16-HDRI-x64\magick.exe" # Path to magick.exe if not in PATH
     
     # WebSocket
     websocket_heartbeat: int = 30

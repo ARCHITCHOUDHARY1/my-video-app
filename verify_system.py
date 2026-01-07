@@ -1,12 +1,8 @@
-"""
-System Verification Script
-Tests all components to identify what works and what's missing
-"""
+
 import sys
 import os
 
 def test_imports():
-    """Test if all required modules can be imported"""
     print("\n" + "="*60)
     print("TESTING IMPORTS")
     print("="*60 + "\n")
@@ -48,7 +44,6 @@ def test_imports():
     return len(failed) == 0, failed
 
 def test_env_config():
-    """Test environment configuration"""
     print("\n" + "="*60)
     print("TESTING ENVIRONMENT CONFIGURATION")
     print("="*60 + "\n")
@@ -74,7 +69,6 @@ def test_env_config():
     return warnings
 
 def test_directories():
-    """Test if required directories exist"""
     print("\n" + "="*60)
     print("TESTING DIRECTORIES")
     print("="*60 + "\n")
